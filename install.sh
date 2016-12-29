@@ -53,8 +53,11 @@ if [ "$type" = 'rhel' ]; then
     fi
 fi
 # Install iptables-services for CentOS 7
-if ["$OS_VER" >= "7"]; then
-    yum -y install iptables-services
+if ["$type" = "rhel"]; then
+    case "$OS_VER" in
+        7|7.0|7.1|7.2|7.3) yum -y install iptables-services
+            ;;
+    esac
 fi
 # OK, last try
 if [ -e '/usr/bin/wget' ]; then
