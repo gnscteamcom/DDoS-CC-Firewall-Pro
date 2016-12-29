@@ -41,7 +41,7 @@ if [ "$type" = "rhel" ]; then
 fi
 # Check wget
 if [ -e '/usr/bin/wget' ]; then
-    wget $SCRIPT_SERVER/install-rhel.sh
+    wget --no-check-certificate $SCRIPT_SERVER/install-rhel.sh
     chmod 0700 install-rhel.sh
     if [ "$?" -eq '0' ]; then
         bash install-rhel.sh $*
@@ -61,7 +61,7 @@ if [ "$type" = 'rhel' ]; then
 fi
 # OK, last try
 if [ -e '/usr/bin/wget' ]; then
-    wget $SCRIPT_SERVER/install-rhel.sh
+    wget --no-check-certificate $SCRIPT_SERVER/install-rhel.sh
     if [ "$?" -eq '0' ]; then
         bash install-rhel.sh $*
         exit
