@@ -15,6 +15,10 @@ SCRIPT_SERVER=https://raw.githubusercontent.com/hklcf/DDoS-CC-Firewall-Pro/maste
 # Check OS type
 if [ -e '/etc/redhat-release' ]; then
     type="rhel"
+    OS_VER=`cat /etc/redhat-release |cut -d\  -f3`;
+    if ["$OS_VER" = "release"]; then
+        OS_VER=`cat /etc/redhat-release | cut -d\  -f4`
+    fi
 fi
 if [ -z "$type" ]; then
     os=$(head -n1 /etc/issue | cut -f 1 -d ' ')
@@ -41,7 +45,7 @@ if [ -e '/usr/bin/wget' ]; then
 fi
 # Let's try to install wget automaticaly
 if [ "$type" = 'rhel' ]; then
-    ./install-rhel.sh
+    yum -y install wget
     if [ $? -ne 0 ]; then
         echo "Error: can't install wget"
         exit 1
