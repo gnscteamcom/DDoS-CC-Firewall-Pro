@@ -10,7 +10,7 @@
 #   Debian 7
 #
 
-RHRL_SCRIPT=https://raw.githubusercontent.com/hklcf/DDoS-CC-Firewall-Pro/master/install-rhel.sh
+SCRIPT_SERVER=https://raw.githubusercontent.com/hklcf/DDoS-CC-Firewall-Pro/master
 
 # Check OS type
 if [ -e '/etc/redhat-release' ]; then
@@ -29,7 +29,7 @@ if [ -z "$type" ]; then
 fi
 # Check wget
 if [ -e '/usr/bin/wget' ]; then
-    wget $RHRL_SCRIPT
+    wget $SCRIPT_SERVER/install-rhel.sh
     chmod 0700 install-rhel.sh
     if [ "$?" -eq '0' ]; then
         bash install-rhel.sh $*
@@ -49,7 +49,7 @@ if [ "$type" = 'rhel' ]; then
 fi
 # OK, last try
 if [ -e '/usr/bin/wget' ]; then
-    wget $RHRL_SCRIPT
+    wget $SCRIPT_SERVER/install-rhel.sh
     if [ "$?" -eq '0' ]; then
         bash install-rhel.sh $*
         exit
