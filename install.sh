@@ -32,6 +32,13 @@ if [ -z "$type" ]; then
     echo 'Error: only RHEL,CentOS,Debian 7 is supported'
     exit 1
 fi
+# Install iptables-services for CentOS 7
+if [ "$type" = "rhel" ]; then
+    case "$OS_VER" in
+        7|7.0|7.1|7.2|7.3) yum -y install iptables-services
+            ;;
+    esac
+fi
 # Check wget
 if [ -e '/usr/bin/wget' ]; then
     wget $SCRIPT_SERVER/install-rhel.sh
@@ -51,13 +58,6 @@ if [ "$type" = 'rhel' ]; then
         echo "Error: can't install wget"
         exit 1
     fi
-fi
-# Install iptables-services for CentOS 7
-if [ "$type" = "rhel" ]; then
-    case "$OS_VER" in
-        7|7.0|7.1|7.2|7.3) yum -y install iptables-services
-            ;;
-    esac
 fi
 # OK, last try
 if [ -e '/usr/bin/wget' ]; then
