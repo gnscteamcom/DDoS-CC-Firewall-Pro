@@ -32,10 +32,10 @@ if [ -z "$type" ]; then
     echo 'Error: only RHEL,CentOS,Debian 7 is supported'
     exit 1
 fi
-# Install iptables-services for CentOS 7
+# Install iptables-services and net-tools for CentOS 7
 if [ "$type" = "rhel" ]; then
     case "$OS_VER" in
-        7|7.0|7.1|7.2|7.3) yum -y install iptables-services
+        7|7.0|7.1|7.2|7.3) yum -y install iptables-services net-tools
             ;;
     esac
 fi
