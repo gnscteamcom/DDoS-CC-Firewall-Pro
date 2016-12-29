@@ -19,6 +19,7 @@ if [ -e '/etc/redhat-release' ]; then
     if ["$OS_VER" = "release"]; then
         OS_VER=`cat /etc/redhat-release | cut -d\  -f4`
     fi
+    OS_VER=`echo $OS_VER | cut -d. -f1,2`
 fi
 if [ -z "$type" ]; then
     os=$(head -n1 /etc/issue | cut -f 1 -d ' ')
@@ -50,6 +51,10 @@ if [ "$type" = 'rhel' ]; then
         echo "Error: can't install wget"
         exit 1
     fi
+fi
+# Install iptables-services for CentOS 7
+if ["$OS_VER" >= "7"]; then
+    yum -y install iptables-services
 fi
 # OK, last try
 if [ -e '/usr/bin/wget' ]; then
