@@ -1,4 +1,5 @@
 #!/bin/sh
+SCRIPT_SERVER=https://raw.githubusercontent.com/hklcf/DDoS-CC-Firewall-Pro/master
 echo 'Install DDOS & CC Firewall Pro v1.0.5:'
 read -p 'Do you want to proceed? [y/n]): ' answer
 if [ "$answer" != 'y' ] && [ "$answer" != 'Y'  ]; then
@@ -25,13 +26,13 @@ fi
 clear
 echo; echo 'Installing DDOS & CC Firewall Pro v1.0.5'; echo
 echo; echo -n 'Downloading files...'
-wget -q -O /usr/local/ddos/ddos.conf http://mirror.vpshouse.net/firewall/ddos/ddos.conf
+wget -q -O /usr/local/ddos/ddos.conf $SCRIPT_SERVER/ddos/ddos.conf
 echo -n '.'
-wget -q -O /usr/local/ddos/LICENSE http://mirror.vpshouse.net/firewall/ddos/LICENSE
+wget -q -O /usr/local/ddos/LICENSE $SCRIPT_SERVER/ddos/LICENSE
 echo -n '.'
-wget -q -O /usr/local/ddos/ignore.ip.list http://mirror.vpshouse.net/firewall/ddos/ignore.ip.list
+wget -q -O /usr/local/ddos/ignore.ip.list $SCRIPT_SERVER/ddos/ignore.ip.list
 echo -n '.'
-wget -q -O /usr/local/ddos/ddos.sh http://mirror.vpshouse.net/firewall/ddos/ddos.sh
+wget -q -O /usr/local/ddos/ddos.sh $SCRIPT_SERVER/ddos/ddos.sh
 chmod 0755 /usr/local/ddos/ddos.sh
 cp -s /usr/local/ddos/ddos.sh /usr/local/sbin/ddos
 echo -e 'PROGDIR="/usr/local/ddos"' '\nPROG="/usr/local/ddos/ddos.sh"' '\nIGNORE_IP_LIST="/usr/local/ddos/ignore.ip.list"' '\nCRON="/etc/cron.d/ddos.cron"' '\nAPF="/etc/apf/apf"' '\nIPT="/sbin/iptables"' '\nFREQ=1' '\nNO_OF_CONNECTIONS='$noofconnections '\nAPF_BAN=0' '\nKILL=1' '\nEMAIL_TO='$email '\nBAN_PERIOD='$banperiod > /usr/local/ddos/ddos.conf
