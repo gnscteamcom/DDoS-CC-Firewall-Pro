@@ -1,6 +1,6 @@
 #!/bin/bash
 # DDOS & CC Firewall Pro installation wrapper
-# https://www.vpshouse.pro
+# modify by HKLCF
 
 #
 # Currently Supported Operating Systems:
@@ -9,6 +9,8 @@
 #   CentOS 5, CentOS 6, CentOS 7
 #   Debian 7
 #
+
+RHRL_SCRIPT=https://raw.githubusercontent.com/hklcf/DDoS-CC-Firewall-Pro/master/install-rhel.sh
 
 # Check OS type
 if [ -e '/etc/redhat-release' ]; then
@@ -27,7 +29,7 @@ if [ -z "$type" ]; then
 fi
 # Check wget
 if [ -e '/usr/bin/wget' ]; then
-    wget http://mirror.vpshouse.net/firewall/install-rhel.sh
+    wget $RHRL_SCRIPT
     chmod 0700 install-rhel.sh
     if [ "$?" -eq '0' ]; then
         bash install-rhel.sh $*
@@ -47,7 +49,7 @@ if [ "$type" = 'rhel' ]; then
 fi
 # OK, last try
 if [ -e '/usr/bin/wget' ]; then
-    wget http://mirror.vpshouse.net/firewall/install-rhel.sh
+    wget $RHRL_SCRIPT
     if [ "$?" -eq '0' ]; then
         bash install-rhel.sh $*
         exit
