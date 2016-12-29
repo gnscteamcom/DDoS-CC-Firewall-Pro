@@ -2,7 +2,8 @@
 Clone from http://mirror.vpshouse.net/firewall/install.sh, thanks VPS House.
 
 ### Requirement
-- CentOS 6/7 (32bit / 64bit)
+- Red Hat Enterprise Linux 5/6/7 (32bit / 64bit)
+- CentOS 5/6/7 (32bit / 64bit)
 - Debian 7 (32bit / 64bit)
 
 ### Installation
