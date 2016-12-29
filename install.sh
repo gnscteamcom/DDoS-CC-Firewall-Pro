@@ -16,7 +16,7 @@ SCRIPT_SERVER=https://raw.githubusercontent.com/hklcf/DDoS-CC-Firewall-Pro/maste
 if [ -e '/etc/redhat-release' ]; then
     type="rhel"
     OS_VER=`cat /etc/redhat-release |cut -d\  -f3`;
-    if ["$OS_VER" = 'release']; then
+    if [ "$OS_VER" = "release" ]; then
         OS_VER=`cat /etc/redhat-release | cut -d\  -f4`
     fi
     OS_VER=`echo $OS_VER | cut -d. -f1,2`
@@ -53,7 +53,7 @@ if [ "$type" = 'rhel' ]; then
     fi
 fi
 # Install iptables-services for CentOS 7
-if ["$type" = "rhel"]; then
+if [ "$type" = "rhel" ]; then
     case "$OS_VER" in
         7|7.0|7.1|7.2|7.3) yum -y install iptables-services
             ;;
